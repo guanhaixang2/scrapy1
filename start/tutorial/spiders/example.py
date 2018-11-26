@@ -66,5 +66,19 @@ class ExampleSpider(scrapy.Spider):
             item['product_price'] = price
             yield item
             
+
+
+
+    def send_json(self, response):
+        yield scrapy.FormRequest(
+            url = 'https://discordapp.com/guilds',
+            formdata = {"content" : "xxx","embed",
+                            {
+                            "title": "Hello, Embed!",
+                            "description": "This is an embedded message."
+                            }
+                        },
+            callback = self.parse_page
+        )
         # print(jsd['objects'][0]['productInfo'][0]['merchPrice']['currentPrice'])
         # print(jsd['objects'][0]['productInfo'][0]['productContent']['fullTitle'])
